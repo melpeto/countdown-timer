@@ -2,15 +2,26 @@ import { useState, useEffect } from "react";
 
 const Stopwatch = (props) => {
 
+    // const [timeLeft, setTimeLeft] = useState(0);
+
     const [seconds, setSeconds] = useState(0);
 
-    const [isStarted, setIsStared] = useState(false);
-    // const seconds = props.turnLength * 60;
+    const [intervalId, setIntervalId] = useState(0);
 
-    // let hrs = Math.floor(seconds / 3600);
-    // let mins = Math.floor( (seconds - (hrs*3600)) / 60 );
-    // // const mins = Math.floor(seconds / 60);
-    // let secs = seconds % 60;
+    const [hrs, setHrs] = useState(0);
+    const [mins, setMins] = useState(0);
+    const [secs, setSecs] = useState(0);
+
+    useEffect( () => {
+        setSeconds(props.turnLength * 60);
+    }, []);
+
+    useEffect( () => {
+        setHrs(Math.floor(seconds / 3600));
+        setMins(Math.floor( (seconds - (hrs*3600)) / 60 ));
+        setSecs(seconds % 60);
+    }, [seconds]);
+
 
     // if (secs < 10) {
     //     secs = `0` + secs;
@@ -28,36 +39,41 @@ const Stopwatch = (props) => {
     //seconds
     //start clicked, pause clicked, reset clicked
 
-    useEffect( () => {
-        const interval = setInterval(timer, 1000);
-        return () => clearInterval(interval);
-    }, [isStarted]);
-
-    const timer = () => {
-        setSeconds( (prevSeconds) => {
-            return prevSeconds - 1;
-        })
-    }
+    // const counter = () => {
+    //     setSeconds( (prevSeconds) => {
+    //         console.log('counting');
+    //         return prevSeconds - 1;
+    //     });
+    // };
 
     const handleStart = () => {
-        console.log('started');
-        //setIsStarted
+
+        if (intervalId) {
+            return;
+        }
+
+        const newIntervalId = setInterval( () => {
+            setSeconds( (prevSeconds) => {
+                console.log('counting down');
+                return (prevSeconds - 1);
+            })
+        }, 1000);
+        setIntervalId(newIntervalId);
     };
 
     const handlePause = () => {
-        console.log('paused');
-        //setIsPaused
+        clearInterval(intervalId);
+        setIntervalId(0);
     };
 
     const handleReset = () => {
         console.log('resetttteded');
-        //setIsReset
-    }
+    };
 
     return(
         <div className="watch wrapper">
             <div className="stopwatchDisplay">
-                {/* <p>{`${hrs}:${mins}:${secs}`}</p> */}
+                <p>{`${hrs}:${mins}:${secs}`}</p>
             </div>
 
             <div className="controls">

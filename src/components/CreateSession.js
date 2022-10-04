@@ -91,6 +91,12 @@ const CreateSession = () => {
 
         <label htmlFor="turnLength">Select your desired turn length in minutes (per player): </label>
         <input type="number" name="" id="turnLength" min="0.5" max="15.5" step="0.5" value={turnLengthInput} onChange={handleInputChange}/>
+
+        {/* <label htmlFor="playerName">Player Name: </label>
+        <input type="text" id="playerName" />
+                
+        <button type="submit" onClick={handleAddPlayer}>Add Player</button> */}
+
         <button type="submit" onClick={handleCreateSession}>Go</button>
     </form>
 </div>

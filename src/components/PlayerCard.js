@@ -1,9 +1,10 @@
 import Stopwatch from "./Stopwatch";
 
 const PlayerCard = (props) => {
+
     return(
             <section className="playerCard">
-                {/* h2 is user input */}
+                {/* below is filled by user inputs */}
                 <h2>{props.playerName}</h2> 
                 <p>{props.role}</p>
                 <p>{props.turnTime}</p>

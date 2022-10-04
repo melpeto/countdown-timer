@@ -33,5 +33,6 @@ export default App;
 
 
   //struggles so far:
+  
   //how to 'control' radio buttons? they each have a hardcoded value, so i can't make the value connected to the state. Does this question even make sense or is it revealing that I misunderstand something about "controlling" components??
-  //best way to avoid prop drilling to pass the "turn length" down from CreateSession to 
+  //best way to avoid prop drilling to pass the "turn length" down from CreateSession to Stopwatch, thru Players then PlayerCard
